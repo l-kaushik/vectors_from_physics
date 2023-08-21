@@ -9,7 +9,7 @@ class Vector:
 
     @classmethod
     def from_magnitude(cls, magnitude, angle_xy, angle_xz=None) :
-        ''' this function takes magnitude and angle of xy plane and xz plane, then returns a vector with x, y, z coordinates'''
+        ''' takes magnitude and angle of xy plane and xz plane, then returns a vector with x, y, z coordinates'''
         x = round(magnitude * math.cos(math.radians(angle_xy)), 2)
         y = round(magnitude * math.sin(math.radians(angle_xy)), 2)
 
@@ -21,6 +21,7 @@ class Vector:
 
     @classmethod
     def angle_between(cls, vector1, vector2):
+        '''take 2 vectors then calculate the angle between them and returns the angle which is of float type'''
         product = vector1.dot_product(vector2)
         magnitude_product = vector1.magnitude() * vector2.magnitude()
 
@@ -30,32 +31,41 @@ class Vector:
 
         return angle_degrees
 
+
     @classmethod
-    def check_negative(cls,first,other):
+    def is_negative(cls,first,other):
+        ''' returns 1 if one vector is negate of other'''
         if(first.to_negative() == other):
             return 1
         else:
             return 0
         
+
     @classmethod
-    def check_equal(cls,first,other):
+    def is_equal(cls,first,other):
+        ''' return 1 if both vectors have same magnitude and direction'''
         if(first == other):
             return 1
         else:
             return 0
         
+        
     def display(self):
+        ''' returns nothing but display x, y, z of a vector'''
         print(f"{self.i}i, {self.j}j, {self.k}k")
 
     def magnitude(self):
+        ''' calculate the magnitude of a vector and returns a float value'''
         return math.sqrt(self.i ** 2 + self.j ** 2 + self.k ** 2)
 
     def dot_product(self, other):
+        '''performs dot product on two vectors and returns a value of type int or float depends upon given x, y, z'''
         product = self.i * other.i + self.j * other.j + self.k * other.k
 
         return product
 
     def crossProduct(self, other):
+        ''' performs cross product on two vectors and returns a new vector'''
         new_i = self.j * other.k - self.k * other.j
         new_j = self.k * other.i - self.i * other.k
         new_k = self.i * other.j - self.j * other.i
@@ -63,6 +73,7 @@ class Vector:
         return Vector(new_i, new_j, new_k)
 
     def to_negative(self):
+        ''' return negate of a vector'''
         x = self.i * -1
         y = self.j * -1
         z = self.k * -1
@@ -97,9 +108,6 @@ class Vector:
 
 
 if __name__ == "__main__":
-    v1 = Vector().from_magnitude(5, 45,60)
+    v1 = Vector().from_magnitude(0, 45,60)
 
-    v2 = v1.to_negative()
-    v1 = v1.to_negative()
-
-    print(Vector.check_negative(v1,v2))
+    v1.display()
