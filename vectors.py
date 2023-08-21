@@ -1,4 +1,19 @@
+"""
+Vector Module
+
+This module defines a Vector class for performing vector operations.
+It provides methods for creating vectors from magnitude and angles, calculating magnitudes,
+performing dot and cross products, checking for vector equality and negativity, and more.
+
+Classes:
+    Vector: A class representing a vector and providing various vector operations.
+
+Author: Lokesh Kaushik
+Date: August 22, 2023
+"""
+
 import math
+
 
 class Vector:
 
@@ -49,7 +64,7 @@ class Vector:
         else:
             return 0
         
-        
+
     def display(self):
         ''' returns nothing but display x, y, z of a vector'''
         print(f"{self.i}i, {self.j}j, {self.k}k")
