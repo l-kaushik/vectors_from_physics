@@ -120,9 +120,12 @@ class Vector:
         
     def __eq__(self, other):
         return self.i == other.i and self.j == other.j and self.k == other.k
+    
+    def __str__(self):
+        return f"{self.i}i, {self.j}j, {self.k}k"
 
 
 if __name__ == "__main__":
-    v1 = Vector().from_magnitude(0, 45,60)
-
-    v1.display()
+   v1 = Vector(3,5,6)
+   v2 = Vector(2,8,4)
+   print(v1+v2)
