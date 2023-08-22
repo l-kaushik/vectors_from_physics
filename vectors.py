@@ -127,5 +127,4 @@ class Vector:
 
 if __name__ == "__main__":
    v1 = Vector(3,5,6)
-   v2 = Vector(2,8,4)
-   print(v1+v2)
+   v1.display()
