@@ -50,6 +50,12 @@ public:
         return round(angle_in_degree *100.0)/100.0;
     }
 
+    static bool is_negative(Vector vec1, Vector vec2){
+        if(vec1.to_negative() == vec2)
+            return true;
+        return false;
+    }
+
     Vector cross_product(Vector other)
     {
         float new_i = j * other.k - k * other.j;
@@ -63,11 +69,16 @@ public:
     {
         return Vector(i * -1, j * -1, k * -1);
     }
+
+    //operator definitions
+    bool operator==(const Vector& other) const {
+        return (i == other.i) && (j == other.j) && (k == other.k);
+    }
 };
 
 int main()
 {
-    Vector a(1,2,3), b(3,2,1);
-    cout<<Vector::angle_between(a,b)<<endl;
+    Vector a(1,2,3), b(-1,2,-3);
+    cout<<Vector::is_negative(a,b);
     return 0;
 }
