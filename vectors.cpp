@@ -21,7 +21,7 @@ public:
         return sqrt(pow(i, 2) + pow(j, 2) + pow(k, 2));
     }
 
-    float dot_product(Vector other)
+    float dot_product(const Vector other)
     {
         return i * other.i + j * other.j + k * other.k;
     }
@@ -47,11 +47,19 @@ public:
         float magnitude_product = vec1.magnitude() * vec2.magnitude();
         float angle_in_degree = (acos(vector_product / magnitude_product) * 180.0 / M_PI);
 
-        return round(angle_in_degree *100.0)/100.0;
+        return round(angle_in_degree * 100.0) / 100.0;
     }
 
-    static bool is_negative(Vector vec1, Vector vec2){
-        if(vec1.to_negative() == vec2)
+    static bool is_negative(Vector vec1, const Vector vec2)
+    {
+        if (vec1.to_negative() == vec2)
+            return true;
+        return false;
+    }
+
+    static bool is_equal(const Vector vec1, const Vector vec2)
+    {
+        if (vec1 == vec2)
             return true;
         return false;
     }
@@ -70,15 +78,49 @@ public:
         return Vector(i * -1, j * -1, k * -1);
     }
 
-    //operator definitions
-    bool operator==(const Vector& other) const {
+    // operator definitions
+    bool operator==(const Vector &other) const
+    {
         return (i == other.i) && (j == other.j) && (k == other.k);
+    }
+
+    Vector operator+(const Vector &other) const
+    {
+        return Vector(i + other.i, j + other.j, k + other.k);
+    }
+
+    Vector operator-(const Vector &other) const
+    {
+        return Vector(i - other.i, j - other.j, k - other.k);
+    }
+
+    Vector operator*(const Vector &other) const
+    {
+        return Vector(i * other.i, j * other.j, k * other.k);
+    }
+
+    friend std::ostream &operator<<(std::ostream &os, const Vector vec)
+    {
+        os << vec.i << "i, " << vec.j << "j, " << vec.k << "k";
+        return os;
+    }
+
+    friend std::istream &operator>>(std::istream &is, Vector &vec)
+    {
+        cout << "i: ";
+        is >> vec.i;
+        cout << "j: ";
+        is >> vec.j;
+        cout << "k: ";
+        is >> vec.k;
+        return is;
     }
 };
 
 int main()
 {
-    Vector a(1,2,3), b(-1,2,-3);
-    cout<<Vector::is_negative(a,b);
+    Vector a;
+    cin >> a;
+    cout << a;
     return 0;
 }
