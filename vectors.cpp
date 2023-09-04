@@ -29,11 +29,6 @@ public:
    static Vector from_magnitude(float mag, float angle_xy, float angle_xz = false)
     {
         float x, y, z;
-        /*
-            i ---> interpreted as magnitude
-            j ---> interpreted as angle between x and y plane
-            z ---> interpreted as angle between x and z plane
-        */
 
         x = (mag * cos(angle_xy * (M_PI / 180.0)));
         y = (mag * sin(angle_xy * (M_PI / 180.0)));
