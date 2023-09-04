@@ -94,9 +94,9 @@ public:
         return Vector(i - other.i, j - other.j, k - other.k);
     }
 
-    Vector operator*(const Vector &other) const
+    Vector operator*(const float &other) const
     {
-        return Vector(i * other.i, j * other.j, k * other.k);
+        return Vector(i * other, j * other, k * other);
     }
 
     friend std::ostream &operator<<(std::ostream &os, const Vector vec)
@@ -119,8 +119,8 @@ public:
 
 int main()
 {
-    Vector a;
+    Vector a, b;
     cin >> a;
-    cout << a;
+    cout << a+(a * 2);
     return 0;
 }
