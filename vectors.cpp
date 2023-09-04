@@ -7,10 +7,7 @@ class Vector
     float i, j, k;
 
 public:
-    
-    Vector() : i(0), j(0), k(0) {}
-
-    Vector(float x, float y, float z):i(x), j(y), k(z) {}
+    Vector(float x = false, float y = false, float z = false):i(x),j(y),k(z){}
 
     void display()
     {
@@ -27,6 +24,25 @@ public:
     float dot_product(Vector other)
     {
         return i * other.i + j * other.j + k * other.k;
+    }
+
+   static Vector from_magnitude(float mag, float angle_xy, float angle_xz = false)
+    {
+        float x, y, z;
+        /*
+            i ---> interpreted as magnitude
+            j ---> interpreted as angle between x and y plane
+            z ---> interpreted as angle between x and z plane
+        */
+
+        x = (mag * cos(angle_xy * (M_PI / 180.0)));
+        y = (mag * sin(angle_xy * (M_PI / 180.0)));
+
+        if(angle_xz != false)
+            z = (mag * cos(angle_xz * (M_PI / 180.0)));
+        else z = 0;
+
+        return Vector(round(x * 100.0)/100.0, round(y * 100.0)/100.0, round(z * 100.0)/100.0);
     }
 
     Vector cross_product(Vector other)
@@ -47,7 +63,7 @@ public:
 int main()
 {
     Vector a;
-    a = Vector(3, 5, -6);
-    a.to_negative().display();
+    a = Vector::from_magnitude(3,50,34.2);
+    a.display();
     return 0;
 }
