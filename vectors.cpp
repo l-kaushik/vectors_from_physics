@@ -7,7 +7,10 @@ class Vector
     float i, j, k;
 
 public:
-    Vector(float i = 0, float j = 0, float k = 0);
+    
+    Vector() : i(0), j(0), k(0) {}
+
+    Vector(float x, float y, float z):i(x), j(y), k(z) {}
 
     void display()
     {
@@ -40,13 +43,6 @@ public:
         return Vector(i * -1, j * -1, k * -1);
     }
 };
-
-Vector::Vector(float x, float y, float z)
-{
-    i = x;
-    j = y;
-    k = z;
-}
 
 int main()
 {
