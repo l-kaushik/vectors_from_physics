@@ -7,7 +7,7 @@ class Vector
     float i, j, k;
 
 public:
-    Vector(float x = false, float y = false, float z = false):i(x),j(y),k(z){}
+    Vector(float x = false, float y = false, float z = false) : i(x), j(y), k(z) {}
 
     void display()
     {
@@ -26,18 +26,28 @@ public:
         return i * other.i + j * other.j + k * other.k;
     }
 
-   static Vector from_magnitude(float mag, float angle_xy, float angle_xz = false)
+    static Vector from_magnitude(float mag, float angle_xy, float angle_xz = false)
     {
         float x, y, z;
 
         x = (mag * cos(angle_xy * (M_PI / 180.0)));
         y = (mag * sin(angle_xy * (M_PI / 180.0)));
 
-        if(angle_xz != false)
+        if (angle_xz != false)
             z = (mag * cos(angle_xz * (M_PI / 180.0)));
-        else z = 0;
+        else
+            z = 0;
 
-        return Vector(round(x * 100.0)/100.0, round(y * 100.0)/100.0, round(z * 100.0)/100.0);
+        return Vector(round(x * 100.0) / 100.0, round(y * 100.0) / 100.0, round(z * 100.0) / 100.0);
+    }
+
+    static float angle_between(Vector vec1, Vector vec2)
+    {
+        float vector_product = vec1.dot_product(vec2);
+        float magnitude_product = vec1.magnitude() * vec2.magnitude();
+        float angle_in_degree = (acos(vector_product / magnitude_product) * 180.0 / M_PI);
+
+        return round(angle_in_degree *100.0)/100.0;
     }
 
     Vector cross_product(Vector other)
@@ -57,8 +67,7 @@ public:
 
 int main()
 {
-    Vector a;
-    a = Vector::from_magnitude(3,50,34.2);
-    a.display();
+    Vector a(1,2,3), b(3,2,1);
+    cout<<Vector::angle_between(a,b)<<endl;
     return 0;
 }
